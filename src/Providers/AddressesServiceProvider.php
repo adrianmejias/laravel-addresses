@@ -39,7 +39,7 @@ class AddressesServiceProvider extends ServiceProvider
         $addressModel === Address::class || $this->app->alias('rinvex.addresses.address', Address::class);
 
         // Register console commands
-        ! $this->app->runningInConsole() || $this->registerCommands();
+        $this->registerCommands($this->commands);
     }
 
     /**
@@ -50,6 +50,6 @@ class AddressesServiceProvider extends ServiceProvider
         // Publish Resources
         $this->publishesConfig('rinvex/laravel-addresses');
         $this->publishesMigrations('rinvex/laravel-addresses');
-        ! $this->autoloadMigrations('rinvex.addresses') || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        ! $this->autoloadMigrations('rinvex/laravel-addresses') || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     }
 }
